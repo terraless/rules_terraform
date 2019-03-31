@@ -1,3 +1,5 @@
+load(":repositories.bzl", "terraform_tools_test")
+
 package(default_visibility = ["//visibility:public"])
 
 exports_files(glob(["*.bzl"]))
@@ -26,4 +28,9 @@ genrule(
     cmd = "cp $(<) $(@)",
     executable = True,
     output_to_bindir = 1,
+)
+
+terraform_tools_test(
+    name = "tools_test",
+    size = "small",
 )

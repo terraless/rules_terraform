@@ -27,3 +27,16 @@ def terraform_tools():
                 ),
                 sha256 = platform["sha256"],
             )
+
+def _impl_terraform_tools_test(ctx):
+    ctx.actions.write(
+        output = ctx.outputs.executable,
+        content = "exit 0",
+    )
+    return [DefaultInfo()]
+
+terraform_tools_test = rule(
+    implementation = _impl_terraform_tools_test,
+    attrs = {},
+    test = True,
+)
